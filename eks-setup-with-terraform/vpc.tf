@@ -8,11 +8,10 @@
 
 resource "aws_vpc" "demo" {
   cidr_block = "10.0.0.0/16"
-
-  tags = map(
-    "Name", "eks-landmark-node",
-    "kubernetes.io/cluster/${var.cluster-name}", "shared",
-  )
+  tags = tomap({
+    "Name"                                      = "eks-demo-node",
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared",
+  })
 }
 
 resource "aws_subnet" "demo" {
